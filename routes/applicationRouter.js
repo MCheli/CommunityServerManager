@@ -9,6 +9,8 @@ var applicationRouter = express.Router();
 applicationRouter.use(bodyParser.json());
 
 applicationRouter.route('/')
+//Returns data about all applications
+//Filters results based on access
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.find({}, function (err, application) {
             if (err) throw err;
@@ -16,6 +18,8 @@ applicationRouter.route('/')
         });
     })
 
+    //Adds a new application
+    //Admin only
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.create(req.body, function (err, application) {
             if (err) throw err;
@@ -29,6 +33,8 @@ applicationRouter.route('/')
         });
     })
 
+    //Deletes all applications
+    //Admin only
     .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.remove({}, function (err, resp) {
             if (err) throw err;
@@ -37,6 +43,8 @@ applicationRouter.route('/')
     });
 
 applicationRouter.route('/:applicationId')
+//Returns data about specified application
+//Only if user has access to applicaiton
     .get(function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
@@ -44,6 +52,8 @@ applicationRouter.route('/:applicationId')
         });
     })
 
+    //Updates information about specified application
+    //Admin only
     .put(function (req, res, next) {
         Applications.findByIdAndUpdate(req.params.applicationId, {
             $set: req.body
@@ -55,6 +65,8 @@ applicationRouter.route('/:applicationId')
         });
     })
 
+    //Deletes specified application
+    //Admin only
     .delete(function (req, res, next) {
         Applications.findByIdAndRemove(req.params.application, function (err, resp) {
             if (err) throw err;
@@ -63,6 +75,8 @@ applicationRouter.route('/:applicationId')
     });
 
 applicationRouter.route('/:applicationId/scripts')
+//Returns all script information about specified application
+//Filters based on access
     .get(function (req, res, next) {
         Applications.findById(req.params.applicaitonId, function (err, application) {
             if (err) throw err;
@@ -70,6 +84,8 @@ applicationRouter.route('/:applicationId/scripts')
         });
     })
 
+    //Adds new script to specified application
+    //Admin only
     .post(function (req, res, next) {
         Applications.findById(req.params.application, function (err, application) {
             if (err) throw err;
@@ -82,6 +98,8 @@ applicationRouter.route('/:applicationId/scripts')
         });
     })
 
+    //Deletes script from specified application
+    //Admin only
     .delete(function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
@@ -99,6 +117,9 @@ applicationRouter.route('/:applicationId/scripts')
     });
 
 applicationRouter.route('/:applicationId/scripts/:scriptId')
+
+//Returns all data about specified script
+//Filters based on access
     .get(function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
@@ -106,6 +127,8 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
         });
     })
 
+    //Updates information about script with corresponding id
+    //Admin only
     .put(function (req, res, next) {
         // We delete the existing commment and insert the updated
         // comment as a new comment
@@ -121,6 +144,8 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
         });
     })
 
+    //Deletes information about script with corresponding Id
+    //Admin only
     .delete(function (req, res, next) {
         Applications.findById(req.params.applicaitonId, function (err, application) {
             application.scripts.id(req.params.scriptId).remove();

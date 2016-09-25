@@ -5,17 +5,16 @@ var Schema = mongoose.Schema;
 var userSchema = require('mongoose').model('User').schema
 
 var scriptSchema = new Schema({
-    rating: {
-        type: Number,
-        min: 1,
-        max: 5,
-        required: true
+    scriptName: {
+        type: String,
+        required: true,
+        unique: true
     },
-    comment: {
+    scriptDescription: {
         type: String,
         required: true
     },
-    author: {
+    scriptCommand: {
         type: String,
         required: true
     }
@@ -25,12 +24,12 @@ var scriptSchema = new Schema({
 
 // create a schema
 var applicationSchema = new Schema({
-    name: {
+    applicationName: {
         type: String,
         required: true,
         unique: true
     },
-    description: {
+    applicationDescription: {
         type: String,
         required: true
     },

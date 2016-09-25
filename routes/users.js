@@ -4,11 +4,13 @@ var passport = require('passport');
 var User = require('../models/user');
 var Verify = require('./verify');
 
-/* GET users listing. */
+//Returns all data about all users
+//Admin only
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
+//Adds user to server, authenticates session
 router.post('/register', function (req, res) {
     User.register(new User({username: req.body.username}),
         req.body.password, function (err, user) {
@@ -21,6 +23,7 @@ router.post('/register', function (req, res) {
         });
 });
 
+//Logs user in to server, authenticates session
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
         if (err) {
@@ -48,11 +51,25 @@ router.post('/login', function (req, res, next) {
     })(req, res, next);
 });
 
+//Logs user out of session
 router.get('/logout', function (req, res) {
     req.logout();
     res.status(200).json({
         status: 'Bye!'
     });
 });
+
+router.route('/:userId')
+    //Promotes user to admin
+    //Admin only
+    .post(function (req, res) {
+        console.log("Delete username has been activated")
+    })
+
+    //Deletes user from system
+    //Admin only
+    .delete(function (req, res) {
+        console.log("delete user has been activated")
+    })
 
 module.exports = router;
