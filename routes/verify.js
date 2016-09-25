@@ -11,7 +11,8 @@ exports.getToken = function (user) {
 exports.verifyOrdinaryUser = function (req, res, next) {
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
+    console.log("Verifying user")
+    console.log(token)
     // decode token
     if (token) {
         // verifies secret and checks exp
@@ -22,7 +23,9 @@ exports.verifyOrdinaryUser = function (req, res, next) {
                 return next(err);
             } else {
                 // if everything is good, save to request for use in other routes
+                console.log("made it")
                 req.decoded = decoded;
+                console.log("made it")
                 next();
             }
         });
@@ -34,3 +37,16 @@ exports.verifyOrdinaryUser = function (req, res, next) {
         return next(err);
     }
 };
+
+exports.verifyAdmin = function (req, res, next) {
+    if(req.decoded._doc.admin){
+        console.log("Admin!")
+        next();
+    } else {
+        var err = new Error('You are not an Admin!');
+        err.status = 401;
+        return next(err);
+    }
+}
+
+//TODO: Add function to verify if user can view an application

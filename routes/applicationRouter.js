@@ -10,7 +10,7 @@ applicationRouter.use(bodyParser.json());
 
 applicationRouter.route('/')
 //Returns data about all applications
-//Filters results based on access
+//Filters results based on access to application
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.find({}, function (err, application) {
             if (err) throw err;
@@ -20,7 +20,7 @@ applicationRouter.route('/')
 
     //Adds a new application
     //Admin only
-    .post(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Applications.create(req.body, function (err, application) {
             if (err) throw err;
             console.log('Application created!');
@@ -35,7 +35,7 @@ applicationRouter.route('/')
 
     //Deletes all applications
     //Admin only
-    .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Applications.remove({}, function (err, resp) {
             if (err) throw err;
             res.json(resp);
@@ -44,7 +44,7 @@ applicationRouter.route('/')
 
 applicationRouter.route('/:applicationId')
 //Returns data about specified application
-//Only if user has access to applicaiton
+//Only if user has access to application
     .get(function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
@@ -76,7 +76,7 @@ applicationRouter.route('/:applicationId')
 
 applicationRouter.route('/:applicationId/scripts')
 //Returns all script information about specified application
-//Filters based on access
+//Filters based on access to application
     .get(function (req, res, next) {
         Applications.findById(req.params.applicaitonId, function (err, application) {
             if (err) throw err;
@@ -119,7 +119,7 @@ applicationRouter.route('/:applicationId/scripts')
 applicationRouter.route('/:applicationId/scripts/:scriptId')
 
 //Returns all data about specified script
-//Filters based on access
+//Filters based on access to application
     .get(function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
@@ -142,6 +142,12 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
                 res.json(application);
             });
         });
+    })
+
+    //Executes script on the server
+    //Filtered based on access to application
+    .post(function (req, res, next) {
+        console.log("Script has been activated")
     })
 
     //Deletes information about script with corresponding Id
