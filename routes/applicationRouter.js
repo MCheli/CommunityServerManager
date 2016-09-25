@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var _ = require('underscore');
 
 var Applications = require('../models/applications');
 var Verify = require('./verify');
@@ -76,11 +77,18 @@ applicationRouter.route('/:applicationId')
                 application.authorizedUsers.push(req.body.username);
                 application.save(function (err, application) {
                     if (err) throw err;
-                    console.log('Updated authorized users!');
                     res.json(application);
                 });
             } else {
-            //    TODO: Remove username from array if add = false
+                var arr = application.authorizedUsers;
+                var updatedAuthorizedUsers = _.filter(arr, function (item) {
+                    return item !== req.body.username
+                });
+                application.authorizedUsers = updatedAuthorizedUsers
+                application.save(function (err, application) {
+                    if (err) throw err;
+                    res.json(application);
+                });
             }
         });
     })
@@ -169,11 +177,11 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
     //Filtered based on access to application
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
-            console.log(application.scripts.id(req.params.scriptId));
-            Exec.execScript(application.scripts.id(req.params.scriptId).scriptCommand)
-            res.send('Script has been activated');
-        }
-    )})
+                Exec.execScript(application.scripts.id(req.params.scriptId).scriptCommand)
+                res.send('Script has been activated');
+            }
+        )
+    })
 
     //Deletes information about script with corresponding Id
     //Admin only
