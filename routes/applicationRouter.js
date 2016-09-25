@@ -48,14 +48,15 @@ applicationRouter.route('/')
 applicationRouter.route('/:applicationId')
 //Returns data about specified application
 //Only if user has access to application
-    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, Verify.verifyAuthorized, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
-            var checkAuthorized = Verify.verifyAuthorized(req, application.authorizedUsers);
-            if(checkAuthorized.authorized){
-                res.json(application);
-            }else{
-                res.json(checkAuthorized.error)
-            }
+            // var checkAuthorized = Verify.verifyAuthorized(req, application.authorizedUsers);
+            // if(checkAuthorized.authorized){
+            //     res.json(application);
+            // }else{
+            //     res.json(checkAuthorized.error)
+            // }
+
         });
     })
 

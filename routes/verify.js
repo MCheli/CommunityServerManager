@@ -1,7 +1,10 @@
-var User = require('../models/user');
+// var User = require('../models/user');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config.js');
 var _ = require('underscore');
+// var mongoose = require('mongoose');
+
+var Applications = require('../models/applications');
 
 exports.getToken = function (user) {
     return jwt.sign(user, config.secretKey, {
@@ -46,19 +49,15 @@ exports.verifyAdmin = function (req, res, next) {
     }
 }
 
-//TODO: Add function to verify if user can view an application
-exports.verifyAuthorized = function (req, arr) {
-    if (_.contains(arr, req.decoded._doc.username)) {
-        console.log("He's on the list!")
-        return {
-            authorized: true
+exports.verifyAuthorized = function (req, res, next) {
+    Applications.findById(req.params.applicationId, function (err, application) {
+        var arr = application.authorizedUsers
+        if(_.contains(arr, req.decoded._doc.username)){
+            next();
+        } else {
+            var err = new Error('You are not authorized!');
+            err.status = 401;
+            return next(err);
         }
-    } else {
-        var err = new Error('You are not on the authorized users list!');
-        err.status = 401;
-        return {
-            authorized: false,
-            error: err
-        }
-    }
+    })
 }
