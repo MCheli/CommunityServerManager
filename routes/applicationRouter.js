@@ -50,8 +50,12 @@ applicationRouter.route('/:applicationId')
 //Only if user has access to application
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
-            if (err) throw err;
-            res.json(application);
+            var checkAuthorized = Verify.verifyAuthorized(req, application.authorizedUsers);
+            if(checkAuthorized.authorized){
+                res.json(application);
+            }else{
+                res.json(checkAuthorized.error)
+            }
         });
     })
 
