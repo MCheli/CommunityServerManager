@@ -19,7 +19,7 @@ db.once('open', function () {
 });
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/userRouter');
 var applicationRouter = require('./routes/applicationRouter');
 
 var app = express();
