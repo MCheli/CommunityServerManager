@@ -6,9 +6,11 @@ var Verify = require('./verify');
 
 //Returns all data about all users
 //Admin only
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
+router.get('/', Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
+    User.find({}, function (err, user) {
+        if (err) throw err;
+        res.json(user);
+    });});
 
 //Adds user to server, authenticates session
 router.post('/register', function (req, res) {
@@ -64,12 +66,14 @@ router.route('/:userId')
     //Admin only
     .post(function (req, res) {
         console.log("User promoted to admin")
+    //    TODO: Promote users to admin
     })
 
     //Deletes user from system
     //Admin only
     .delete(function (req, res) {
         console.log("delete user has been activated")
+    //    TODO: Delete user
     })
 
 module.exports = router;
