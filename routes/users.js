@@ -63,7 +63,7 @@ router.route('/:userId')
     //Promotes user to admin
     //Admin only
     .post(function (req, res) {
-        console.log("Delete username has been activated")
+        console.log("User promoted to admin")
     })
 
     //Deletes user from system

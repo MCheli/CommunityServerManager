@@ -46,3 +46,7 @@ exports.verifyAdmin = function (req, res, next) {
 }
 
 //TODO: Add function to verify if user can view an application
+
+exports.verifyAuthorized = function (req, res, next) {
+
+}

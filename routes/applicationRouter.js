@@ -66,6 +66,24 @@ applicationRouter.route('/:applicationId')
         });
     })
 
+    //Adds user to specified application
+    //Admin only
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
+        Applications.findById(req.params.applicationId, function (err, application) {
+            if (err) throw err;
+            if (req.body.add) {
+                application.authorizedUsers.push(req.body.username);
+                application.save(function (err, application) {
+                    if (err) throw err;
+                    console.log('Updated authorized users!');
+                    res.json(application);
+                });
+            } else {
+            //    TODO: Remove username from array if add = false
+            }
+        });
+    })
+
     //Deletes specified application
     //Admin only
     .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
@@ -149,7 +167,7 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
     //Filtered based on access to application
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         console.log("Script has been activated")
-    //    TODO: Put in code that executes shell js
+        //    TODO: Put in code that executes shell js
         res.send('Script has been activated');
     })
 

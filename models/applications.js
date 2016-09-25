@@ -2,8 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = require('mongoose').model('User').schema
-
 var scriptSchema = new Schema({
     scriptName: {
         type: String,
@@ -33,7 +31,9 @@ var applicationSchema = new Schema({
         type: String,
         required: true
     },
-    authorizedUsers: [userSchema],
+    authorizedUsers: {
+        type: [String]
+    },
     scripts: [scriptSchema]
 }, {
     timestamps: true
