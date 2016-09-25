@@ -65,15 +65,22 @@ router.route('/:userId')
     //Promotes user to admin
     //Admin only
     .post(function (req, res) {
-        console.log("User promoted to admin")
-    //    TODO: Promote users to admin
+        User.findById(req.params.userId, function (err, user) {
+            user.admin = true
+            user.save(function (err, user) {
+                if (err) throw err;
+                res.json(user);
+            });
+        })
     })
 
     //Deletes user from system
     //Admin only
     .delete(function (req, res) {
-        console.log("delete user has been activated")
-    //    TODO: Delete user
-    })
+        User.findByIdAndRemove(req.params.userId, function (err, resp) {
+            if (err) throw err;
+            res.json(resp);
+        });
+    });
 
 module.exports = router;
