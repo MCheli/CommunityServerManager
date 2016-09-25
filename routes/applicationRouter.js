@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 var Applications = require('../models/applications');
 var Verify = require('./verify');
+var Exec = require('../shellJs/exec')
 
 var applicationRouter = express.Router();
 applicationRouter.use(bodyParser.json());
@@ -103,6 +104,7 @@ applicationRouter.route('/:applicationId/scripts')
         });
     })
 
+    //    TODO:  Prevent user from adding duplicate scripts
     //Adds new script to specified application
     //Admin only
     .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
@@ -166,10 +168,12 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
     //Executes script on the server
     //Filtered based on access to application
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
-        console.log("Script has been activated")
-        //    TODO: Put in code that executes shell js
-        res.send('Script has been activated');
-    })
+        Applications.findById(req.params.applicationId, function (err, application) {
+            console.log(application.scripts.id(req.params.scriptId));
+            Exec.execScript(application.scripts.id(req.params.scriptId).scriptCommand)
+            res.send('Script has been activated');
+        }
+    )})
 
     //Deletes information about script with corresponding Id
     //Admin only
