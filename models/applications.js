@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = require('./models/user');
+var userSchema = require('mongoose').model('User').schema
 
 var scriptSchema = new Schema({
     rating: {
