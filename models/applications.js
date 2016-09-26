@@ -6,14 +6,17 @@ var scriptSchema = new Schema({
     scriptName: {
         type: String,
         required: true,
+        sparse: true,
         unique: true
     },
     scriptDescription: {
         type: String,
+        sparse: true,
         required: true
     },
     scriptCommand: {
         type: String,
+        sparse: true,
         required: true
     }
 }, {
