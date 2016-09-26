@@ -48,6 +48,9 @@ exports.verifyAdmin = function (req, res, next) {
 
 exports.verifyAuthorized = function (req, res, next) {
     Applications.findById(req.params.applicationId, function (err, application) {
+        if (err) {
+            return next(err);
+        }
         var arr = application.authorizedUsers
         if(_.contains(arr, req.decoded._doc.username)){
             next();
