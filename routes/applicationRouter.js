@@ -11,6 +11,7 @@ var applicationRouter = express.Router();
 applicationRouter.use(bodyParser.json());
 
 applicationRouter.route('/')
+    //    TODO: Filter results of application return by ones the user has access too
 //Returns data about all applications
 //Filters results based on access to application
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
@@ -26,7 +27,6 @@ applicationRouter.route('/')
     .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Applications.create(req.body, function (err, application) {
             if (err) throw err;
-            console.log('Application created!');
             var id = application._id;
 
             res.writeHead(200, {
@@ -105,7 +105,7 @@ applicationRouter.route('/:applicationId')
 applicationRouter.route('/:applicationId/scripts')
 //Returns all script information about specified application
 //Filters based on access to application
-    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, Verify.verifyAuthorized, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
             res.json(application.scripts);
@@ -121,7 +121,6 @@ applicationRouter.route('/:applicationId/scripts')
             application.scripts.push(req.body);
             application.save(function (err, application) {
                 if (err) throw err;
-                console.log('Updated Scripts!');
                 res.json(application);
             });
         });
@@ -149,7 +148,7 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
 
 //Returns all data about specified script
 //Filters based on access to application
-    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, Verify.verifyAuthorized, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
             res.json(application.scripts.id(req.params.scriptId));
@@ -159,15 +158,12 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
     //Updates information about script with corresponding id
     //Admin only
     .put(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
-        // We delete the existing commment and insert the updated
-        // comment as a new comment
         Applications.findById(req.params.applicationId, function (err, application) {
             if (err) throw err;
             application.scripts.id(req.params.scriptId).remove();
             application.scripts.push(req.body);
             application.save(function (err, application) {
                 if (err) throw err;
-                console.log('Updated Scripts!');
                 res.json(application);
             });
         });
@@ -175,7 +171,7 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
 
     //Executes script on the server
     //Filtered based on access to application
-    .post(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAuthorized, function (req, res, next) {
         Applications.findById(req.params.applicationId, function (err, application) {
                 Exec.execScript(application.scripts.id(req.params.scriptId).scriptCommand)
                 res.send('Script has been activated');
@@ -190,7 +186,6 @@ applicationRouter.route('/:applicationId/scripts/:scriptId')
             application.scripts.id(req.params.scriptId).remove();
             application.save(function (err, resp) {
                 if (err) throw err;
-                console.log('Deleted Script')
                 res.json(resp);
             });
         });

@@ -1,8 +1,6 @@
-// var User = require('../models/user');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config.js');
 var _ = require('underscore');
-// var mongoose = require('mongoose');
 
 var Applications = require('../models/applications');
 
@@ -40,7 +38,6 @@ exports.verifyOrdinaryUser = function (req, res, next) {
 
 exports.verifyAdmin = function (req, res, next) {
     if (req.decoded._doc.admin) {
-        console.log("Admin!")
         next();
     } else {
         var err = new Error('You are not an Admin!');
@@ -55,7 +52,7 @@ exports.verifyAuthorized = function (req, res, next) {
         if(_.contains(arr, req.decoded._doc.username)){
             next();
         } else {
-            var err = new Error('You are not authorized!');
+            var err = new Error('You are not authorized on this application!');
             err.status = 401;
             return next(err);
         }
