@@ -9,13 +9,13 @@ var Exec = require('../shellJs/exec')
 
 var applicationRouter = express.Router();
 applicationRouter.use(bodyParser.json());
-
+//TODO: Error handling
 applicationRouter.route('/')
     //    TODO: Filter results of application return by ones the user has access too
 //Returns data about all applications
 //Filters results based on access to application
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
-        Applications.find({}, function (err, application) {
+        Applications.find({ authorizedUsers: req.decoded._doc.username }, function (err, application) {
             if (err) throw err;
             res.json(application);
         });
