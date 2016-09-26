@@ -51,7 +51,7 @@ exports.verifyAuthorized = function (req, res, next) {
         if (err) {
             return next(err);
         }
-        var arr = application.authorizedUsers
+        var arr = application.authorizedUsers //TODO: Throws error when null
         if(_.contains(arr, req.decoded._doc.username)){
             next();
         } else {
