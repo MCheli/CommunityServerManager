@@ -1,5 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="CSM">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Community Server Manager</title>
+
+    <!-- Bootstrap -->
+    <link href="./bower_components/angular-bootstrap/ui-bootstrap.js" rel="stylesheet">
+    <link href="./bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./styles/index.css" rel="stylesheet">
+
+</head>
+
 <body>
-<h1>Hello World!</h1>
+<div ui-view></div>
 </body>
+<!-- scripts should be placed before the </body> tag -->
+
+<script src="bower_components/angular/angular.min.js"></script>
+
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/AddApplicationController.js"></script>
+<script src="scripts/controllers/ApplicationController.js"></script>
+<script src="scripts/controllers/MainController.js"></script>
+<script src="scripts/controllers/PermissionsController.js"></script>
+<script src="scripts/controllers/LoginController.js"></script>
+<!--Insert additional .js files here-->
+
 </html>
