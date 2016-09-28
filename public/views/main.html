@@ -1,5 +1,13 @@
 <div class="container" ng-controller="MainController">
     <div class="row">
         <h1>Main Page</h1>
+        <ol>
+            <li ui-sref="main.addApplication">Add Application</li>
+            <li ui-sref="main.permissions">Add Application</li>
+            <li ui-sref="main.application">Add Application</li>
+        </ol>
+    </div>
+    <div id="main-wrapper">
+        <div class = "container-fluid row no-gutter" ui-view></div>
     </div>
 </div>
