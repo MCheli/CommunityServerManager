@@ -1,4 +1,7 @@
 angular.module('CSM', ['ui.router', 'ngResource'])
+
+    .constant("baseURL", "http://localhost:3000/")
+
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home')
         $stateProvider
