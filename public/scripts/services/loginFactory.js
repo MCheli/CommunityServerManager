@@ -2,7 +2,14 @@
 
 angular.module('CSM')
 
-    .service('loginFactory', ['$resource', 'baseURL', function($resource, baseURL) {
+    .factory('loginFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
+        return $resource(baseURL + "users/login", {}, {save: {isArray: false, method: "POST"}});
+
+    }])
+
+    .factory('registerFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+
+        return $resource(baseURL + "users/register", {}, {save: {isArray: false, method: "POST"}});
 
     }])
