@@ -1,8 +1,16 @@
-<div class="no-gutter text-center nested-page" ng-controller="AddApplicationController">
-    <div class="row">
-        <h1>Add Application Page</h1>
+<div class="no-gutter nested-page">
+    <div class="nested-frame">
+        <h2>Add Application</h2>
+        <form>
+            <div class="form-group">
+                <label for="appName">Application Name</label>
+                <input type="text" class="form-control" id="appName">
+            </div>
+            <div class="form-group">
+                <label for="appDescription">Application Description</label>
+                <textarea id="appDescription" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
-    {{applications}}
-
-    <a ng-click="load()">Click here</a>
 </div>
