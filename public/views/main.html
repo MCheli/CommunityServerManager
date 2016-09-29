@@ -12,12 +12,6 @@
                 <li id="_{{application.applicationName}}" ng-repeat="application in applications"><a ui-sref="main.application({ name: '{{application._id}}' })">{{application.applicationName}}</a></li>
             </a>
         </ul>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>{{applications}}</p>
     </div>
     <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions">
         User Permissions
