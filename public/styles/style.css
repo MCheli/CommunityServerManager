@@ -65,6 +65,15 @@ h2 {
     padding-bottom: 15px;
 }
 
+#sidebar-permissions {
+    height: 55px;
+    width: 100%;
+    background-color: #f5733a;
+    position: absolute;
+    bottom: 55px;
+    left: 0;
+}
+
 #application-container {
     padding-top: 5px;
     overflow-y: hidden;
@@ -77,21 +86,30 @@ h2 {
 .application-list {
     list-style: none;
     padding: 0px;
-    margin: 0;
+    margin: 150px 0px 0px 0px;
 }
 
 .application-list > a {
     display: block;
     padding: 3px 5px 3px 20px;
-    color: rgb(200, 201, 199);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     transition: none;
 }
 
 .application-list > a:hover {
     text-decoration: none;
-    background-color: rgb(93, 173, 61);
-    color: rgb(226, 242, 219);
+    background-color: rgb(245, 115, 58);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 0px 3px 0px 3px;
+    padding-left: 17px;
+}
+
+.add-application-list {
+    text-decoration: none;
+    background-color: rgb(245, 115, 58);
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     margin: 0px 3px 0px 3px;
     padding-left: 17px;
@@ -113,7 +131,6 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-
 
 .row.no-gutter {
     margin-right: 0;
