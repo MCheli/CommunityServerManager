@@ -10,10 +10,10 @@
                 <div class="col-xs-6 col-xs-push-3 col-sm-4 col-sm-push-4 landingForm" ng-show="loginForm">
                     <form ng-submit="loginUser()">
                         <div class="form-group">
-                            <input class="form-control" id="loginUsername" placeholder="Username" ng-model="loginUsername">
+                            <input class="form-control" type="text" id="loginUsername" placeholder="Username" ng-model="loginUsername">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="loginPassword" placeholder="Password" ng-model="loginPassword">
+                            <input class="form-control" type="password" id="loginPassword" placeholder="Password" ng-model="loginPassword">
                         </div>
                         <input class="btn btn-default col-xs-push-1 col-xs-4" type="submit" value="Login">
                         <a class="btn btn-default col-xs-push-3 col-xs-4" ng-click="loginForm=false; registerForm=true;"
@@ -23,13 +23,13 @@
                 <div class="col-xs-6 col-xs-push-3 col-sm-4 col-sm-push-4 landingForm" ng-show="registerForm">
                     <form ng-submit="registerUser()">
                         <div class="form-group">
-                            <input class="form-control" id="registerUsername" placeholder="Username" ng-model="registerUsername">
+                            <input class="form-control" type="text" id="registerUsername" placeholder="Username" ng-model="registerUsername">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="registerPassword" placeholder="Password" ng-model="registerPassword">
+                            <input class="form-control" type="password" id="registerPassword" placeholder="Password" ng-model="registerPassword">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="registerPasswordConfirmation"
+                            <input class="form-control" type="password" id="registerPasswordConfirmation"
                                    placeholder="Confirm Password" ng-model="registerPasswordConfirmation">
                         </div>
                         <input class="btn btn-default col-xs-4 col-xs-push-4" type="submit" value="Submit">
