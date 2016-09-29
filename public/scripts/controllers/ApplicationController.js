@@ -2,10 +2,14 @@
 
 angular.module('CSM')
 
-    .controller('ApplicationController', ['$scope', 'applicationFactory', function ($scope, applicationFactory) {
+    .controller('ApplicationController', ['$scope', '$stateParams', 'applicationFactory', function ($scope, $stateParams, applicationFactory) {
 
-        $scope.applications = {};
+        $scope.application = {}
 
-        // $scope.applications = applicationFactory.getApplications();
-
+        $scope.$on('$stateChangeSuccess', function () {
+            $scope.application = applicationFactory.get({
+                id: $stateParams.name
+            })
+        })
+        
     }])
