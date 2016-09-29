@@ -117,22 +117,24 @@ h2 {
 
 .nested-page {
     padding-left: 225px;
-    margin-top: -50px;
+    margin-top: 10px;
     position: absolute;
     color: #473B45;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: stretch;
-    align-items: center;
-    justify-content: center;
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*-webkit-align-items: stretch;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }
 
 .nested-frame {
     margin: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
     padding: 25px;
     background-color: #FFFFFF;
     display: block;
