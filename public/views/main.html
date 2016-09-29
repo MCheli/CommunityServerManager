@@ -1,0 +1,36 @@
+<div id="sidebar-wrapper" ng-controller="MainController">
+    <div id="sidebar-header">
+        <div class="sidebar-title text-center">
+            <h1>CSM</h1>
+        </div>
+    </div>
+    <div id="application-container">
+        <ul class="application-list">
+            <h4>Available Applications...</h4>
+            <a ui-sref="main.addApplication" class="add-application-list">
+                <li>Add Application</li>
+            </a>
+        </ul>
+
+        <!--<ol>-->
+        <!--<li ui-sref="main.addApplication">Add Application</li>-->
+        <!--<li ui-sref="main.permissions">Permissions</li>-->
+        <!--<li ui-sref="main.application">Application</li>-->
+        <!--</ol>-->
+
+        <!--<ul class="application-list" ng-repeat="(key, value) in things">-->
+        <!--<a id="_{{key}}" ui-sref="default.thing({ name: '{{key}}' })"><li>{{key | limitTo: 24}}{{key.length > 24 ? '...' : ''}}</li></a>-->
+        <!--</ul>-->
+    </div>
+    <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions">
+        User Permissions
+    </div>
+
+    <div id="sidebar-footer" class="text-center">
+        <p>By <a href="www.markcheli.com">Mark Cheli</a></p>
+        <p>Available Under MIT License</p>
+    </div>
+</div>
+<div id="main-wrapper">
+    <div class="container-fluid row no-gutter" ui-view></div>
+</div>
