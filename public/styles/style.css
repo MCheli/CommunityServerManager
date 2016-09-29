@@ -1,0 +1,145 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    background-color: #208082;
+    color: #FFF;
+}
+
+a {
+    color: #F5733A;
+}
+
+h1 {
+    font: 72px "Bungee Shade";
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.landingContainer {
+    position: relative;
+    height: 14rem;
+}
+
+.landingContainer.landingDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.landingForm {
+    margin-top: 30px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    margin-top: 0;
+    height: 100%;
+    position: fixed;
+    background-color: rgb(32, 128, 130);
+    width: 225px;
+    color: #FFFFFF;
+    /*border-right: solid 1px rgb(200, 201, 199);*/
+    transition: 0.5s linear all;
+}
+
+#sidebar-footer {
+    height: 55px;
+    width: 100%;
+    background-color: #28565E;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#sidebar-header {
+    margin-bottom: 0px;
+    background-color: #28565E;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding-bottom: 15px;
+}
+
+#sidebar-permissions {
+    height: 55px;
+    width: 100%;
+    background-color: #f5733a;
+    position: absolute;
+    bottom: 55px;
+    left: 0;
+}
+
+#application-container {
+    padding-top: 5px;
+    overflow-y: hidden;
+}
+
+#application-container:hover {
+    overflow-y: auto;
+}
+
+.application-list {
+    list-style: none;
+    padding: 0px;
+    margin: 150px 0px 0px 0px;
+}
+
+.application-list > a {
+    display: block;
+    padding: 3px 5px 3px 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: none;
+}
+
+.application-list > a:hover {
+    text-decoration: none;
+    background-color: rgb(245, 115, 58);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 0px 3px 0px 3px;
+    padding-left: 17px;
+}
+
+.add-application-list {
+    text-decoration: none;
+    background-color: rgb(245, 115, 58);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 0px 3px 0px 3px;
+    padding-left: 17px;
+}
+
+.nested-page {
+    background-color: #D5D5D5;
+    width: 100%;
+    height: 100%;
+    padding-left: 225px;
+    /*margin-top: -50px;*/
+    position: absolute;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: stretch;
+    align-items: center;
+    justify-content: center;
+}
+
+.row.no-gutter {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.row.no-gutter > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
