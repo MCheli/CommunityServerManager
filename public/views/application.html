@@ -1,5 +1,12 @@
 <div class="no-gutter nested-page">
     <div class="nested-frame">
-        <h2>Application Name</h2>
+        <h2>{{application.applicationName}}</h2>
+        <p>{{application.applicationDescription}}</p>
+    </div>
+    <div class="nested-frame" ng-show="scripts" ng-repeat="script in scripts">
+        <h3>{{script.name}}</h3>
+        <p>{{script.description}}</p>
+        <a class="btn btn-default col-xs-push-3 col-xs-4"
+           role="button">Activate</a>
     </div>
 </div>
