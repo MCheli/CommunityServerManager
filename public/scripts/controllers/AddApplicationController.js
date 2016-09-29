@@ -2,6 +2,10 @@
 
 angular.module('CSM')
 
-    .controller('AddApplicationController', ['$scope', function ($scope) {
+    .controller('AddApplicationController', ['$scope', 'applicationFactory', 'AuthFactory', function ($scope, applicationFactory, AuthFactory) {
+
+        $scope.applications = {};
+        $scope.applications = applicationFactory.getApplications();
+
 
     }])
