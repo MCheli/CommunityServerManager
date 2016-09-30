@@ -15,6 +15,7 @@ angular.module('CSM')
         $scope.registerPasswordConfirmation = "";
 
         $scope.errorMsg = "";
+        $scope.error = false;
 
         $rootScope.$on('login:Successful', function () {
             $scope.loggedIn = AuthFactory.isAuthenticated();
@@ -29,11 +30,13 @@ angular.module('CSM')
         });
 
         $scope.loginUser = function () {
-            var body = {
-                username: $scope.loginUsername,
-                password: $scope.loginPassword
-            };
-            AuthFactory.login(body)
+            if ($scope.loginUsername && $scope.loginPassword) {
+                var body = {
+                    username: $scope.loginUsername,
+                    password: $scope.loginPassword
+                };
+                AuthFactory.login(body)
+            }
         };
 
         $scope.registerUser = function () {
@@ -47,4 +50,4 @@ angular.module('CSM')
                 $scope.errorMsg = "Password Don't Match"
             }
         }
-    }])
+    }]);
