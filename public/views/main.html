@@ -16,10 +16,16 @@
                 {{application.applicationName}}
             </li>
             <br/>
-            <li ui-sref="main.addApplication">Add New Application</li>
+            <li ui-sref="main.addApplication"
+                ng-class="{'active-application': evalActive('AddApplication')}"
+                ng-click="setActive('AddApplication')">
+                Add New Application
+            </li>
         </ul>
     </div>
-    <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions">
+    <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions"
+         ng-class="{'active-permissions': evalActive('UserPermissions')}"
+         ng-click="setActive('UserPermissions')">
         User Permissions
     </div>
 

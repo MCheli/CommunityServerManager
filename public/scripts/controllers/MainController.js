@@ -24,6 +24,4 @@ angular.module('CSM')
                 return false;
             }
         }
-
-
     }])

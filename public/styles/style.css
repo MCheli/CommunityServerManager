@@ -150,6 +150,10 @@ h2 {
     padding-top: 10px;
     padding-bottom: 10px;}
 
+.active-permissions, .active-permissions:hover {
+    background-color: #f5733a !important;
+}
+
 .nested-page {
     padding-left: 225px;
     margin-top: 10px;
