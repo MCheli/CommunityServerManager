@@ -1,11 +1,12 @@
 <div class="no-gutter nested-page">
     <div class="nested-frame">
+        <!--<div style="height: 34px">-->
+            <a class="btn deleteBtn pull-right" ng-show="admin"
+               role="button" ng-click="deleteApplication()" ng-show="admin" style="margin-top: 20px;">Delete</a>
+        <!--</div>-->
         <h2>{{application.applicationName}}</h2>
         <p>{{application.applicationDescription}}</p>
-        <div style="height: 34px">
-            <a class="btn deleteBtn pull-right" ng-show="admin"
-               role="button" ng-click="deleteApplication()" ng-show="admin">Delete</a>
-        </div>
+
     </div>
     <div class="nested-frame" ng-repeat="script in application.scripts">
         <h3>{{script.scriptName}}</h3>
@@ -24,15 +25,15 @@
         <h3>Add New Script</h3>
         <form ng-submit="createScript()">
             <div class="form-group">
-                Script Name:
+                <label for="scriptName">Script Name:</label>
                 <input type="text" class="form-control" id="scriptName" ng-model="scriptName">
             </div>
             <div class="form-group">
-                Script Description:
+                <label for="scriptDescription">Script Description:</label>
                 <textarea id="scriptDescription" class="form-control" rows="2" ng-model="scriptDescription"></textarea>
             </div>
             <div class="form-group">
-                Script Command:
+                <label for="scriptCommand">Script Command:</label>
                 <textarea id="scriptCommand" class="form-control" rows="3" ng-model="scriptCommand"></textarea>
             </div>
             <div style="height: 34px">
