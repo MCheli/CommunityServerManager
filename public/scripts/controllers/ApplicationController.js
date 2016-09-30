@@ -4,12 +4,16 @@ angular.module('CSM')
 
     .controller('ApplicationController', ['$scope', '$state', '$window', '$stateParams', 'applicationFactory', 'scriptFactory', 'AuthFactory', function ($scope, $state, $window, $stateParams, applicationFactory, scriptFactory, AuthFactory) {
 
-        $scope.application = {}
+        $scope.application = {};
+        $scope.loadingState = true;
         $scope.admin = AuthFactory.getAdmin();
 
         $scope.$on('$stateChangeSuccess', function () {
             $scope.application = applicationFactory.get({
                 id: $stateParams.name
+            })
+            $scope.application.$promise.then(function(){
+                $scope.loadingState = false;
             })
         })
 
