@@ -18,6 +18,10 @@ h2 {
     font-weight: 700;
 }
 
+label {
+    font-weight: normal !important;
+}
+
 .shellScript {
     font-family: "Courier New", Courier, monospace;
     color: #f5733a;
