@@ -7,7 +7,7 @@
         <h3>{{application.applicationName}}</h3>
         <ul>
             <li ng-repeat="user in application.authorizedUsers">{{user}}<a ng-click="removeUser(application, user)"><i
-                    class="fa fa-minus-circle text-danger" aria-hidden="true"></i></a></li>
+                    class="fa fa-minus-circle text-danger" style="padding-left: 5px" aria-hidden="true"></i></a></li>
         </ul>
         <form class="form-inline" ng-submit="addUser(application)">
             <div class="form-group">
