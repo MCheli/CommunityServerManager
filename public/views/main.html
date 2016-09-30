@@ -1,16 +1,21 @@
 <div id="sidebar-wrapper" ng-controller="MainController">
-    <div id="sidebar-header">
+    <div id="sidebar-header" ui-sref="home">
         <div class="sidebar-title text-center">
             <h1>CSM</h1>
         </div>
     </div>
     <div id="application-container">
         <ul class="application-list">
-            <h4>Available Applications...</h4>
-            <li ui-sref="main.application({ name: '{{application._id}}' })" ng-repeat="application in applications">
+            <div id="sidebar-label">
+                <h2>Available Applications</h2>
+            </div>
+            <li id="_{{application.applicationName}}" ui-sref="main.application({ name: '{{application._id}}' })"
+                ng-repeat="application in applications"
+                ng-class="{'active-application': evalActive(application.applicationName)}"
+                ng-click="setActive(application.applicationName)">
                 {{application.applicationName}}
             </li>
-            <br />
+            <br/>
             <li ui-sref="main.addApplication">Add New Application</li>
         </ul>
     </div>
@@ -18,9 +23,9 @@
         User Permissions
     </div>
 
-    <div id="sidebar-footer" class="text-center">
-        <p>By <a href="www.markcheli.com">Mark Cheli</a></p>
-        <p>Available Under <a ng-click="load"> MIT </a> License</p>
+    <div id="sidebar-footer" class="text-center" style="padding-top: 8px">
+        By <a href="www.markcheli.com">Mark Cheli</a> <br/>
+        <a href="https://github.com/MCheli/CommunityServerManager">Available Under MIT License</a>
     </div>
 </div>
 <div id="main-wrapper">
