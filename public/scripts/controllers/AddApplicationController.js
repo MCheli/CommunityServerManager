@@ -19,6 +19,5 @@ angular.module('CSM')
             applicationFactory.save(body)
             $state.go('main')
         }
-
-
+        
     }])

@@ -4,10 +4,17 @@
         <h2>User Permissions</h2>
     </div>
     <div class="nested-frame" ng-repeat="application in applications">
-        <h3>{{application.applicationName}}<a class="btn actionBtn" href="#" role="button">Add User</a></h3>
+        <h3>{{application.applicationName}}</h3>
         <ul>
             <li ng-repeat="user in application.authorizedUsers">{{user}}<a ng-click="removeUser(application, user)"><i
                     class="fa fa-minus-circle text-danger" aria-hidden="true"></i></a></li>
         </ul>
+        <form class="form-inline" ng-submit="addUser(application)">
+            <div class="form-group">
+                 Username:
+                <input type="text" class="form-control" id="username" ng-model="applications.newUser">
+            </div>
+            <button type="submit" class="btn actionBtn">Add User</button>
+        </form>
     </div>
 </div>
