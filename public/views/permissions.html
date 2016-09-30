@@ -2,19 +2,26 @@
 <div class="no-gutter nested-page">
     <div class="nested-frame">
         <h2>User Permissions</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" ng-model="applications.newUser">
+            </div>
+            <div>
+                <p>
+                    Message:  <span style="color:#f5733a">{{messageSubject}}</span>{{message}}<span style="color:#f5733a">{{messageTarget}}</span>
+                </p>
+            </div>
+        </form>
     </div>
     <div class="nested-frame" ng-repeat="application in applications">
+        <button type="submit" class="btn actionBtn pull-right" ng-click="addUser(application)"
+                style="margin-top: 20px;">Add User
+        </button>
         <h3>{{application.applicationName}}</h3>
         <ul>
             <li ng-repeat="user in application.authorizedUsers">{{user}}<a ng-click="removeUser(application, user)"><i
                     class="fa fa-minus-circle text-danger" style="padding-left: 5px" aria-hidden="true"></i></a></li>
         </ul>
-        <form class="form-inline" ng-submit="addUser(application)">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" ng-model="applications.newUser">
-            </div>
-            <button type="submit" class="btn actionBtn">Add User</button>
-        </form>
     </div>
 </div>
