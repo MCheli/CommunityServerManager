@@ -16,8 +16,10 @@ angular.module('CSM')
                 "authorizedUsers": [$scope.username],
                 "scripts": []
             }
-            applicationFactory.save(body)
-            $state.go('main')
+            $scope.addApp = applicationFactory.save(body)
+            $scope.addApp.$promise.then(function (data) {
+                $state.go('main.application', {name: data.appId})
+            });
         }
-        
+
     }])
