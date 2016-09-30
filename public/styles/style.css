@@ -22,6 +22,10 @@ label {
     font-weight: normal !important;
 }
 
+.errorText {
+    color: #f5733a;
+}
+
 .shellScript {
     font-family: "Courier New", Courier, monospace;
     color: #f5733a;
