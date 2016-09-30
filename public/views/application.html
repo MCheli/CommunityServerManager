@@ -6,7 +6,7 @@
     <div class="nested-frame" ng-repeat="script in application.scripts">
         <h3>{{script.scriptName}}</h3>
         <p>{{script.scriptDescription}}</p>
-        <p>{{script.scriptCommand}}</p>
+        <p class="shellScript">{{script.scriptCommand}}</p>
         <a class="btn btn-default"
            role="button">Activate</a>
     </div>

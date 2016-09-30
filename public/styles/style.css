@@ -18,6 +18,11 @@ h2 {
     font-weight: 700;
 }
 
+.shellScript {
+    font-family: "Courier New", Courier, monospace;
+    color: #f5733a;
+}
+
 .landingContainer {
     position: relative;
     height: 14rem;
