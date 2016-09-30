@@ -2,6 +2,8 @@
     <div class="nested-frame">
         <h2>{{application.applicationName}}</h2>
         <p>{{application.applicationDescription}}</p>
+        <a class="btn deleteBtn" ng-show="admin"
+           role="button" ng-click="deleteApplication()" ng-show="admin">Delete</a>
     </div>
     <div class="nested-frame" ng-repeat="script in application.scripts">
         <h3>{{script.scriptName}}</h3>
