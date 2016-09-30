@@ -32,10 +32,7 @@ applicationRouter.route('/')
             ;
             var id = application._id;
 
-            res.writeHead(200, {
-                'Content-Type': 'text/plain'
-            });
-            res.end('Added the application with id: ' + id);
+            res.json({appId: id});
         });
     })
 
