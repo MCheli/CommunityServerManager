@@ -7,20 +7,12 @@
     <div id="application-container">
         <ul class="application-list">
             <h4>Available Applications...</h4>
-            <a ui-sref="main.addApplication" class="add-application-list">
-                <li>Add Application</li>
-            </a>
+            <li ui-sref="main.application({ name: '{{application._id}}' })" ng-repeat="application in applications">
+                {{application.applicationName}}
+            </li>
+            <br />
+            <li ui-sref="main.addApplication">Add New Application</li>
         </ul>
-
-        <!--<ol>-->
-        <!--<li ui-sref="main.addApplication">Add Application</li>-->
-        <!--<li ui-sref="main.permissions">Permissions</li>-->
-        <!--<li ui-sref="main.application">Application</li>-->
-        <!--</ol>-->
-
-        <!--<ul class="application-list" ng-repeat="(key, value) in things">-->
-        <!--<a id="_{{key}}" ui-sref="default.thing({ name: '{{key}}' })"><li>{{key | limitTo: 24}}{{key.length > 24 ? '...' : ''}}</li></a>-->
-        <!--</ul>-->
     </div>
     <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions">
         User Permissions
@@ -28,7 +20,7 @@
 
     <div id="sidebar-footer" class="text-center">
         <p>By <a href="www.markcheli.com">Mark Cheli</a></p>
-        <p>Available Under MIT License</p>
+        <p>Available Under <a ng-click="load"> MIT </a> License</p>
     </div>
 </div>
 <div id="main-wrapper">

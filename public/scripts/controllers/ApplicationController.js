@@ -2,10 +2,31 @@
 
 angular.module('CSM')
 
-    .controller('ApplicationController', ['$scope', 'applicationFactory', function ($scope, applicationFactory) {
+    .controller('ApplicationController', ['$scope', '$stateParams', 'applicationFactory', 'scriptFactory', function ($scope, $stateParams, applicationFactory, scriptFactory) {
 
-        $scope.applications = {};
+        $scope.application = {}
 
-        // $scope.applications = applicationFactory.getApplications();
+        $scope.$on('$stateChangeSuccess', function () {
+            $scope.application = applicationFactory.get({
+                id: $stateParams.name
+            })
+        })
+
+
+        $scope.scriptName = "";
+        $scope.scriptDescription = "";
+        $scope.scriptCommand = "";
+
+        $scope.createScript = function () {
+            var body = {
+                "scriptName": $scope.scriptName,
+                "scriptDescription": $scope.scriptDescription,
+                "scriptCommand": $scope.scriptCommand
+            }
+            scriptFactory.save({
+                id: $stateParams.name
+            }, body)
+            $state.go('main')
+        }
 
     }])
