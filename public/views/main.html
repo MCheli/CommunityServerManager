@@ -7,10 +7,11 @@
     <div id="application-container">
         <ul class="application-list">
             <h4>Available Applications...</h4>
-            <a ui-sref="main.addApplication" class="add-application-list">
-                <li>Add Application</li>
-                <li id="_{{application.applicationName}}" ng-repeat="application in applications"><a ui-sref="main.application({ name: '{{application._id}}' })">{{application.applicationName}}</a></li>
-            </a>
+            <li ui-sref="main.application({ name: '{{application._id}}' })" ng-repeat="application in applications">
+                {{application.applicationName}}
+            </li>
+            <br />
+            <li ui-sref="main.addApplication">Add New Application</li>
         </ul>
     </div>
     <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions">
@@ -23,5 +24,5 @@
     </div>
 </div>
 <div id="main-wrapper">
-    <div class = "container-fluid row no-gutter" ui-view></div>
+    <div class="container-fluid row no-gutter" ui-view></div>
 </div>

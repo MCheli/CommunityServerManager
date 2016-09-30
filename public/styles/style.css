@@ -74,6 +74,10 @@ h2 {
     left: 0;
 }
 
+#sidebar-permissions:hover {
+    background-color: #f5733a;
+}
+
 #application-container {
     padding-top: 5px;
     overflow-y: hidden;
@@ -89,30 +93,19 @@ h2 {
     margin: 150px 0px 0px 0px;
 }
 
-.application-list > a {
+.application-list {
     display: block;
-    padding: 3px 5px 3px 20px;
+    padding: 3px 3px 3px 20px;
     color: rgb(255, 255, 255);
     text-decoration: none;
     transition: none;
 }
 
-.application-list > a:hover {
+.application-list > li:hover {
     text-decoration: none;
     background-color: rgb(245, 115, 58);
     color: rgb(255, 255, 255);
     border-radius: 5px;
-    margin: 0px 3px 0px 3px;
-    padding-left: 17px;
-}
-
-.add-application-list {
-    text-decoration: none;
-    background-color: rgb(245, 115, 58);
-    color: rgb(255, 255, 255);
-    border-radius: 5px;
-    margin: 0px 3px 0px 3px;
-    padding-left: 17px;
 }
 
 .nested-page {
@@ -124,11 +117,6 @@ h2 {
     bottom: 0;
     right: 0;
     left: 0;
-    /*display: -webkit-flex;*/
-    /*display: flex;*/
-    /*-webkit-align-items: stretch;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
 }
 
 .nested-frame {
