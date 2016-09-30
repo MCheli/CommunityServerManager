@@ -10,7 +10,6 @@ angular.module('CSM')
             $scope.application = applicationFactory.get({
                 id: $stateParams.name
             })
-            console.log($scope.application)
         })
 
 
@@ -21,8 +20,8 @@ angular.module('CSM')
         $scope.createScript = function () {
             var body = {
                 "scriptName": $scope.scriptName,
-                "scriptDescription":  $scope.scriptDescription,
-                "scriptCommand":  $scope.scriptCommand
+                "scriptDescription": $scope.scriptDescription,
+                "scriptCommand": $scope.scriptCommand
             }
             scriptFactory.save({
                 id: $stateParams.name
