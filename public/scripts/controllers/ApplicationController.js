@@ -27,6 +27,7 @@ angular.module('CSM')
             scriptFactory.save({
                 id: $stateParams.name
             }, body)
+            $state.go('main')
         }
 
     }])
