@@ -3,10 +3,29 @@
         <h2>{{application.applicationName}}</h2>
         <p>{{application.applicationDescription}}</p>
     </div>
-    <div class="nested-frame" ng-show="scripts" ng-repeat="script in scripts">
-        <h3>{{script.name}}</h3>
-        <p>{{script.description}}</p>
-        <a class="btn btn-default col-xs-push-3 col-xs-4"
+    <div class="nested-frame" ng-repeat="script in application.scripts">
+        <h3>{{script.scriptName}}</h3>
+        <p>{{script.scriptDescription}}</p>
+        <p>{{script.scriptCommand}}</p>
+        <a class="btn btn-default"
            role="button">Activate</a>
+    </div>
+    <div class="nested-frame">
+        <h3>Add new script</h3>
+        <form ng-submit="createScript()">
+            <div class="form-group">
+                <label for="scriptName">Script Name</label>
+                <input type="text" class="form-control" id="scriptName" ng-model="scriptName">
+            </div>
+            <div class="form-group">
+                <label for="scriptDescription">Script Description</label>
+                <textarea id="scriptDescription" class="form-control" rows="2" ng-model="scriptDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="scriptCommand">Script Command</label>
+                <textarea id="scriptCommand" class="form-control" rows="3" ng-model="scriptCommand"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
 </div>
