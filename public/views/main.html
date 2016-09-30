@@ -18,14 +18,16 @@
             <br/>
             <li ui-sref="main.addApplication"
                 ng-class="{'active-application': evalActive('AddApplication')}"
-                ng-click="setActive('AddApplication')">
+                ng-click="setActive('AddApplication')"
+                ng-show="admin">
                 Add New Application
             </li>
         </ul>
     </div>
     <div id="sidebar-permissions" class="text-center flex-container" ui-sref="main.permissions"
          ng-class="{'active-permissions': evalActive('UserPermissions')}"
-         ng-click="setActive('UserPermissions')">
+         ng-click="setActive('UserPermissions')"
+         ng-show="admin">
         User Permissions
     </div>
 

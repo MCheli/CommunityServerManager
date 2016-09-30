@@ -2,16 +2,16 @@
 
 angular.module('CSM')
 
-    .controller('ApplicationController', ['$scope', '$stateParams', 'applicationFactory', 'scriptFactory', function ($scope, $stateParams, applicationFactory, scriptFactory) {
+    .controller('ApplicationController', ['$scope', '$stateParams', 'applicationFactory', 'scriptFactory', 'AuthFactory', function ($scope, $stateParams, applicationFactory, scriptFactory, AuthFactory) {
 
         $scope.application = {}
+        $scope.admin = AuthFactory.getAdmin();
 
         $scope.$on('$stateChangeSuccess', function () {
             $scope.application = applicationFactory.get({
                 id: $stateParams.name
             })
         })
-
 
         $scope.scriptName = "";
         $scope.scriptDescription = "";
