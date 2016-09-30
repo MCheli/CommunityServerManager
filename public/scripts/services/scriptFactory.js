@@ -3,7 +3,7 @@
 angular.module('CSM')
 
     .factory('scriptFactory', ['$resource', 'baseURL', 'AuthFactory', function ($resource, baseURL, AuthFactory) {
-        return $resource(baseURL + "applications/:id/scripts", null,
+        return $resource(baseURL + "applications/:id/scripts/:scriptId", null,
             {
                 'query': {
                     method: 'GET',
