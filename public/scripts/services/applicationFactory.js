@@ -9,6 +9,10 @@ angular.module('CSM')
                     method: 'GET',
                     isArray: true,
                     headers: {'auth-token': AuthFactory.authToken}
+                },
+                'update': {
+                    method: 'PUT',
+                    headers: {'auth-token': AuthFactory.authToken}
                 }
             });
     }])
