@@ -17,6 +17,12 @@ angular.module('CSM')
         $scope.scriptDescription = "";
         $scope.scriptCommand = "";
 
+        $scope.deleteApplication = function () {
+            applicationFactory.delete({
+                id: $stateParams.name
+            }, {})
+        }
+
         $scope.createScript = function () {
             var body = {
                 "scriptName": $scope.scriptName,
