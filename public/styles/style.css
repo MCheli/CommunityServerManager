@@ -39,6 +39,16 @@ h2 {
     margin-top: 30px;
 }
 
+.actionBtn {
+    background: #f5733a;
+    color: #FFFFFF;
+}
+
+.deleteBtn {
+    background: #473B45;
+    color: #FFFFFF;
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     margin-top: 0;
