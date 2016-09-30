@@ -26,7 +26,21 @@ angular.module('CSM')
             scriptFactory.save({
                 id: $stateParams.name
             }, body)
-            $state.go('main')
+            // $state.go('main')
+        }
+
+        $scope.executeScript = function (scriptId) {
+            scriptFactory.save({
+                id: $stateParams.name,
+                scriptId: scriptId
+            }, {})
+        }
+
+        $scope.deleteScript = function (scriptId) {
+            scriptFactory.delete({
+                id: $stateParams.name,
+                scriptId: scriptId
+            }, {})
         }
 
     }])
