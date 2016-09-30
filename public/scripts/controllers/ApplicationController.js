@@ -2,20 +2,34 @@
 
 angular.module('CSM')
 
-    .controller('ApplicationController', ['$scope', '$stateParams', 'applicationFactory', 'scriptFactory', function ($scope, $stateParams, applicationFactory, scriptFactory) {
+    .controller('ApplicationController', ['$scope', '$state', '$window', '$stateParams', 'applicationFactory', 'scriptFactory', 'AuthFactory', function ($scope, $state, $window, $stateParams, applicationFactory, scriptFactory, AuthFactory) {
 
-        $scope.application = {}
+        $scope.application = {};
+        $scope.loadingState = true;
+        $scope.admin = AuthFactory.getAdmin();
 
         $scope.$on('$stateChangeSuccess', function () {
             $scope.application = applicationFactory.get({
                 id: $stateParams.name
             })
+            $scope.application.$promise.then(function(){
+                $scope.loadingState = false;
+            })
         })
-
 
         $scope.scriptName = "";
         $scope.scriptDescription = "";
         $scope.scriptCommand = "";
+
+        $scope.deleteApplication = function () {
+            $scope.deleteApp = applicationFactory.delete({
+                id: $stateParams.name
+            }, {})
+            $scope.deleteApp.$promise.then(function () {
+                $state.go('main')
+                $window.location.reload();
+            });
+        }
 
         $scope.createScript = function () {
             var body = {
@@ -23,10 +37,17 @@ angular.module('CSM')
                 "scriptDescription": $scope.scriptDescription,
                 "scriptCommand": $scope.scriptCommand
             }
-            scriptFactory.save({
+            $scope.saveScript = scriptFactory.save({
                 id: $stateParams.name
             }, body)
-            // $state.go('main')
+            $scope.saveScript.$promise.then(function () {
+                $scope.application = applicationFactory.get({
+                    id: $stateParams.name
+                })
+                $scope.scriptName = "";
+                $scope.scriptDescription = "";
+                $scope.scriptCommand = "";
+            });
         }
 
         $scope.executeScript = function (scriptId) {
@@ -37,10 +58,15 @@ angular.module('CSM')
         }
 
         $scope.deleteScript = function (scriptId) {
-            scriptFactory.delete({
+            $scope.delScript = scriptFactory.delete({
                 id: $stateParams.name,
                 scriptId: scriptId
             }, {})
+            $scope.delScript.$promise.then(function () {
+                $scope.application = applicationFactory.get({
+                    id: $stateParams.name
+                })
+            })
         }
-
-    }])
+    }
+    ])
