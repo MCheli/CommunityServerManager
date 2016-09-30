@@ -2,11 +2,12 @@
 
 angular.module('CSM')
 
-    .controller('MainController', ['$scope', '$rootScope', '$state', 'applicationFactory', function ($scope, $rootScope, $state, applicationFactory) {
+    .controller('MainController', ['$scope', '$rootScope', '$state', 'applicationFactory', 'AuthFactory', function ($scope, $rootScope, $state, applicationFactory, AuthFactory) {
 
         $scope.applications = applicationFactory.query();
         $scope.activeApplication = "";
         $scope.active = false;
+        $scope.admin = AuthFactory.getAdmin();
 
         $scope.applications.$promise.then(function (data) {
             $scope.activeApplication = data[0].applicationName;

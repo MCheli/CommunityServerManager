@@ -9,6 +9,7 @@ angular.module('CSM')
         var isAuthenticated = false;
         var username = '';
         var authToken = undefined;
+        var admin = false;
 
 
         function loadUserCredentials() {
@@ -27,6 +28,7 @@ angular.module('CSM')
             isAuthenticated = true;
             username = credentials.username;
             authToken = credentials.token;
+            admin = credentials.admin;
 
             // Set the token as header for your requests!
             $http.defaults.headers.common['x-access-token'] = authToken;
@@ -45,8 +47,11 @@ angular.module('CSM')
             $resource(baseURL + "users/login")
                 .save(loginData,
                     function (response) {
-                        console.log(response)
-                        storeUserCredentials({username: loginData.username, token: response.token});
+                        storeUserCredentials({
+                            username: loginData.username,
+                            token: response.token,
+                            admin: response.admin
+                        });
                         $rootScope.$broadcast('login:Successful');
                     },
                     function (response) {
@@ -87,6 +92,10 @@ angular.module('CSM')
         authFac.getUsername = function () {
             return username;
         };
+
+        authFac.getAdmin = function() {
+            return admin;
+        }
 
         loadUserCredentials();
 
