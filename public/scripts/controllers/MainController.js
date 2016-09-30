@@ -2,6 +2,9 @@
 
 angular.module('CSM')
 
-    .controller('MainController', ['$scope', function ($scope) {
+    .controller('MainController', ['$scope', '$rootScope', 'applicationFactory', function ($scope, $rootScope, applicationFactory) {
+
+        $scope.applications = applicationFactory.query();
+
 
     }])

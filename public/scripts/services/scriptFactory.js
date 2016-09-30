@@ -2,7 +2,13 @@
 
 angular.module('CSM')
 
-    .service('scriptFactory', ['$resource', 'baseURL', function($resource, baseURL) {
-
-
+    .factory('scriptFactory', ['$resource', 'baseURL', 'AuthFactory', function ($resource, baseURL, AuthFactory) {
+        return $resource(baseURL + "applications/:id/scripts", null,
+            {
+                'query': {
+                    method: 'GET',
+                    isArray: true,
+                    headers: {'auth-token': AuthFactory.authToken}
+                }
+            });
     }])

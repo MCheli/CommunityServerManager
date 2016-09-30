@@ -2,14 +2,22 @@
 
 angular.module('CSM')
 
-    .controller('AddApplicationController', ['$scope', 'applicationFactory', 'AuthFactory', function ($scope, applicationFactory, AuthFactory) {
+    .controller('AddApplicationController', ['$scope', '$state', 'applicationFactory', 'AuthFactory', function ($scope, $state, applicationFactory, AuthFactory) {
 
-        $scope.applications = {};
-        applicationFactory.getApplications();
-        $scope.applications = AuthFactory.applicationList;
+        $scope.applicationName = "";
+        $scope.applicationDescription = "";
+        $scope.errorMsg = "";
+        $scope.username = AuthFactory.getUsername();
 
-        $scope.load = function () {
-            $scope.applications = AuthFactory.applicationList;
+        $scope.createApplication = function () {
+            var body = {
+                "applicationName": $scope.applicationName,
+                "applicationDescription": $scope.applicationDescription,
+                "authorizedUsers": [$scope.username],
+                "scripts": []
+            }
+            applicationFactory.save(body)
+            $state.go('main')
         }
 
 
