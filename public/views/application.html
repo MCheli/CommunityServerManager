@@ -2,17 +2,23 @@
     <div class="nested-frame">
         <h2>{{application.applicationName}}</h2>
         <p>{{application.applicationDescription}}</p>
-        <a class="btn deleteBtn" ng-show="admin"
-           role="button" ng-click="deleteApplication()" ng-show="admin">Delete</a>
+        <div style="height: 34px">
+            <a class="btn deleteBtn pull-right" ng-show="admin"
+               role="button" ng-click="deleteApplication()" ng-show="admin">Delete</a>
+        </div>
     </div>
     <div class="nested-frame" ng-repeat="script in application.scripts">
         <h3>{{script.scriptName}}</h3>
         <p>{{script.scriptDescription}}</p>
-        <p class="shellScript" ng-show="admin">{{script.scriptCommand}}</p>
-        <a class="btn actionBtn"
-           role="button" ng-click="executeScript(script._id)">Activate</a>
-        <a class="btn deleteBtn" ng-show="admin"
-           role="button" ng-click="deleteScript(script._id)">Delete</a>
+        <p class="text-center">
+            <code class="shellScript" ng-show="admin">{{script.scriptCommand}}</code>
+        </p>
+        <div style="height: 34px">
+            <a class="btn deleteBtn" ng-show="admin"
+               role="button" ng-click="deleteScript(script._id)">Delete</a>
+            <a class="btn actionBtn pull-right"
+               role="button" ng-click="executeScript(script._id)">Activate</a>
+        </div>
     </div>
     <div class="nested-frame" ng-show="admin">
         <h3>Add New Script</h3>
@@ -29,7 +35,9 @@
                 Script Command:
                 <textarea id="scriptCommand" class="form-control" rows="3" ng-model="scriptCommand"></textarea>
             </div>
-            <button type="submit" class="btn actionBtn">Submit</button>
+            <div style="height: 34px">
+                <button type="submit" class="btn actionBtn pull-right">Submit</button>
+            </div>
         </form>
     </div>
 </div>
