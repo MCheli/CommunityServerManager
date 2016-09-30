@@ -4,18 +4,24 @@
             <div class="landingDiv text-center">
                 <h1>CSM</h1>
                 <h2>[Community Server Manager]</h2>
-                <div class="has-error" ng-show="errorMsg">
-                    {{errorMsg}}
-                </div>
                 <div class="col-xs-6 col-xs-push-3 col-sm-4 col-sm-push-4 landingForm" ng-show="loginForm">
-                    <form ng-submit="loginUser()">
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="loginUsername" placeholder="Username" ng-model="loginUsername">
+                    <form name="loginForm" ng-submit="loginUser()" novalidate>
+                        <div class="form-group"
+                             ng-class="{'has-error': loginForm.loginUsername.$error.required && !loginForm.loginUsername.$pristine}">
+                            <input name="loginUsername" class="form-control" type="text" id="loginUsername"
+                                   placeholder="Username" ng-model="loginUsername" required>
+                            <span class="help-block"
+                                  ng-show="loginForm.loginUsername.$error.required && !loginForm.loginUsername.$pristine">You must provide a username</span>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" type="password" id="loginPassword" placeholder="Password" ng-model="loginPassword">
+                        <div class="form-group"
+                             ng-class="{'has-error': loginForm.loginPassword.$error.required && !loginForm.loginPassword.$pristine}">
+                            <input name="loginPassword" id="loginPassword" class="form-control" type="password"
+                                   id="loginPassword" placeholder="Password" ng-model="loginPassword" required>
+                            <span class="help-block"
+                                  ng-show="loginForm.loginPassword.$error.required && !loginForm.loginPassword.$pristine">You must provide a password</span>
                         </div>
-                        <input class="btn btn-default col-xs-push-1 col-xs-4" type="submit" value="Login">
+                        <button class="btn btn-default col-xs-push-1 col-xs-4" type="submit" value="Login">Login
+                        </button>
                         <a class="btn btn-default col-xs-push-3 col-xs-4" ng-click="loginForm=false; registerForm=true;"
                            role="button">Register</a>
                     </form>
