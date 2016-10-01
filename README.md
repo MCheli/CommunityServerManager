@@ -1,4 +1,4 @@
-# CommunityServerManager
+# Community Server Manager
 A simple utility for group managing shell scripts on a community server.  Just install this repo onto the server that has the applicaitons you would like to group manage, type npm start, and navigate to the server's IP address to be able to execute scripts from anywhere on it.
 
 Also download the Community Server Manager mobile app from the Apple app store (pending approval)!  Repo for Ionic mobile app:  https://github.com/MCheli/CommunityServerManagerApp 
